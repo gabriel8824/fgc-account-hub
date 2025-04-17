@@ -2,7 +2,12 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { Session, User } from '@supabase/supabase-js';
 import { supabase } from '@/lib/supabase';
-import type { Profile } from '@/types/supabase';
+
+// Define Profile type based on the actual database structure
+type Profile = {
+  user_id: string;
+  role: 'beneficiary' | 'admin';
+}
 
 type AuthContextType = {
   session: Session | null;
@@ -66,7 +71,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
-        .eq('id', userId)
+        .eq('user_id', userId)
         .single();
 
       if (error) {

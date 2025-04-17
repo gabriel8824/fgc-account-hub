@@ -12,13 +12,11 @@ export type Database = {
     Tables: {
       profiles: {
         Row: {
-          id: string
+          user_id: string
           role: 'beneficiary' | 'admin'
-          created_at: string
-          updated_at: string
         }
         Insert: {
-          id: string
+          user_id: string
           role: 'beneficiary' | 'admin'
         }
         Update: {
@@ -29,30 +27,29 @@ export type Database = {
         Row: {
           id: string
           nome: string
-          descricao: string
-          estado: string
+          descricao: string | null
+          estado: string | null
           criado_em: string
         }
         Insert: {
           id?: string
           nome: string
-          descricao: string
-          estado: string
+          descricao?: string | null
+          estado?: string | null
         }
         Update: {
           nome?: string
-          descricao?: string
-          estado?: string
+          descricao?: string | null
+          estado?: string | null
         }
       }
       beneficiary_projects: {
         Row: {
-          id: string
           beneficiary_id: string
           project_id: string
+          atribuido_em: string
         }
         Insert: {
-          id?: string
           beneficiary_id: string
           project_id: string
         }
@@ -80,7 +77,7 @@ export type Database = {
           beneficiary_id: string
           period: 'mensal' | 'trimestral' | 'semestral' | 'anual'
           descricao_progresso: string
-          postos_trabalho: number
+          postos_trabalho?: number
           status?: 'rascunho' | 'enviado' | 'aprovado' | 'rejeitado'
           observacoes?: string | null
         }
