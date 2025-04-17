@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -112,7 +111,7 @@ const ReportDetail = () => {
         // Fetch report details and project name
         const { data: reportData, error: reportError } = await supabase
           .from('reports')
-          .select('*, project:project_id(id, nome, descricao, estado)')
+          .select('*, project:project_id(id, nome, descricao, estado, criado_em)')
           .eq('id', reportId)
           .single();
 

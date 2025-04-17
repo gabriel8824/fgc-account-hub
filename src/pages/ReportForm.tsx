@@ -121,7 +121,10 @@ const ReportForm = () => {
       const reportData = {
         ...report,
         beneficiary_id: user?.id,
-        status: saveAsDraft ? 'rascunho' : 'enviado'
+        status: saveAsDraft ? 'rascunho' as const : 'enviado' as const,
+        descricao_progresso: report.descricao_progresso || '',
+        period: report.period as 'mensal' | 'trimestral' | 'semestral' | 'anual',
+        project_id: report.project_id
       };
 
       let result;
