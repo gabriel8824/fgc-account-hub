@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, Loader2 } from 'lucide-react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -37,7 +37,7 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-fgc-700">FGC</h1>
+          <h1 className="text-4xl font-bold text-fgc-500">FGC</h1>
           <p className="text-gray-600 mt-2">Sistema de Prestação de Contas</p>
         </div>
         
@@ -77,8 +77,15 @@ const Login = () => {
                   required
                 />
               </div>
-              <Button type="submit" className="w-full bg-fgc-600 hover:bg-fgc-700" disabled={loading}>
-                {loading ? 'Entrando...' : 'Entrar'}
+              <Button type="submit" className="w-full bg-fgc-500 hover:bg-fgc-600" disabled={loading}>
+                {loading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Entrando...
+                  </>
+                ) : (
+                  'Entrar'
+                )}
               </Button>
             </form>
           </CardContent>
